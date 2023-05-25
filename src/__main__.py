@@ -15,6 +15,7 @@ def run_game():
 
     screen = pygame.display.set_mode(size=[WIDTH, HEIGHT], flags=pygame.RESIZABLE)
     clock = pygame.time.Clock()
+    pygame.display.set_caption('Dungeon Master')
 
     level_map = Map('level_one.txt')
 

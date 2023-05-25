@@ -18,6 +18,7 @@ def main():
     map_name = sys.argv[1] if len(sys.argv) == 2 else 'level_one.txt'
     map_path = Path(__file__).parent / '..' / 'assets' / 'maps' / map_name
     level_map = Map(map_name)
+    pygame.display.set_caption(f'Map Editor - {map_name}')
 
     modified_time = os.stat(map_path).st_mtime
 
