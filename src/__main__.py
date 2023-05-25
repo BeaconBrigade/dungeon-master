@@ -26,25 +26,19 @@ def main():
             elif event.type == pygame.VIDEORESIZE:
                 screen = pygame.display.set_mode((event.w, event.h),
                                                  pygame.RESIZABLE)
-            elif event.type == pygame.KEYDOWN:
-                match event.key:
-                    case pygame.K_LEFT | pygame.K_a:
-                        player.vector[0] = -1
-                    case pygame.K_RIGHT | pygame.K_d:
-                        player.vector[0] = 1
-                    case pygame.K_UP | pygame.K_w:
-                        player.vector[1] = -1
-                    case pygame.K_DOWN | pygame.K_s:
-                        player.vector[1] = 1
-            elif event.type == pygame.KEYUP:
-                match event.key:
-                    case pygame.K_LEFT | pygame.K_a | pygame.K_RIGHT | pygame.K_d:
-                        player.vector[0] = 0
-                    case pygame.K_UP | pygame.K_w | pygame.K_DOWN | pygame.K_s:
-                        player.vector[1] = 0
-
-            elif event.type == pygame.KEYUP:
-                pass
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT] or keys[pygame.K_a]:
+            player.vector[0] = -1
+        if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+            player.vector[0] = 1
+        if keys[pygame.K_UP] or keys[pygame.K_w]:
+            player.vector[1] = -1
+        if keys[pygame.K_DOWN] or keys[pygame.K_s]:
+            player.vector[1] = 1
+        if not keys[pygame.K_LEFT] and not keys[pygame.K_a] and not keys[pygame.K_RIGHT] and not keys[pygame.K_d]:
+            player.vector[0] = 0
+        if not keys[pygame.K_UP] and not keys[pygame.K_w] and not keys[pygame.K_DOWN] and not keys[pygame.K_s]:
+            player.vector[1] = 0
 
         # fill background
         screen.fill((50, 50, 50))

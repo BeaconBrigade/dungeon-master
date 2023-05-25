@@ -11,7 +11,7 @@ class Player(Entity):
         self.vector = [0, 0]
         self.max_speed = 20
         self.current_speed = [0, 0]
-        self.acceleration = 1
+        self.acceleration = 5
         self.texture = AssetManager.load_texture('player-v1.png')
 
     def update(self):
