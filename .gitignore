@@ -1,3 +1,7 @@
 venv
 .venv
 __pycache__
+
+# because of replit
+poetry.lock
+pyproject.toml
