@@ -1,22 +1,25 @@
+import os
+import sys
 import pygame
-from map import Map
 
-
-def main():
-    run_game()
-
+from map import Map, InvalidMapFile
+from pathlib import Path
 
 WIDTH = 800
 HEIGHT = 800
 
 
-def run_game():
+def main():
     pygame.init()
 
     screen = pygame.display.set_mode(size=[WIDTH, HEIGHT], flags=pygame.RESIZABLE)
     clock = pygame.time.Clock()
 
-    level_map = Map('level_one.txt')
+    map_name = sys.argv[1] if len(sys.argv) == 2 else 'level_one.txt'
+    map_path = Path(__file__).parent / '..' / 'assets' / 'maps' / map_name
+    level_map = Map(map_name)
+
+    modified_time = os.stat(map_path).st_mtime
 
     running = True
     while running:
@@ -27,6 +30,16 @@ def run_game():
             if event.type == pygame.VIDEORESIZE:
                 screen = pygame.display.set_mode((event.w, event.h),
                                                  pygame.RESIZABLE)
+
+        # hot reload map
+        tmp_time = os.stat(map_path).st_mtime
+        if tmp_time != modified_time:
+            print(f"Hot reloading {map_name}")
+            modified_time = tmp_time
+            try:
+                level_map = Map(map_name)
+            except InvalidMapFile:
+                print("Hot reloaded map was invalid")
 
         # fill background
         screen.fill((50, 50, 50))
