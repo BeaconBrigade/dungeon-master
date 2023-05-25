@@ -1,6 +1,6 @@
 language = "python3"
 entrypoint = "src/__main__.py"
-hidden = ["venv", ".config", "**/__pycache__", "**/.mypy_cache", "**/*.pyc"]
+hidden = ["venv", ".config", "**/__pycache__", "**/.mypy_cache", "**/*.pyc", ".idea"]
 
 audio = true
 
