@@ -33,7 +33,7 @@ class Map:
         self.rows = rows
         self.cols = cols
 
-    def draw(self, view: pygame.surface.Surface, relative_pos):
+    def draw(self, view: pygame.surface.Surface, relative_pos: (int, int)):
         """ Draws the map to `view` and draws the """
         win_x, win_y = view.get_size()
         # for each tile
