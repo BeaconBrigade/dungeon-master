@@ -33,18 +33,40 @@ class Map:
         self.rows = rows
         self.cols = cols
 
-    def draw(self, view: pygame.surface.Surface, relative_pos: (int, int)):
+    def dimensions(self) -> (int, int):
+        return self.cols * 64, self.rows * 64
+
+    def draw(self, view: pygame.surface.Surface, player_pos: (int, int)):
         """Draws the map to `view` and draws the"""
         win_x, win_y = view.get_size()
+        map_x, map_y = self.dimensions()
+        p_x, p_y = player_pos
         # for each tile
-        for i in range(0, min(win_x, self.cols * 64), 64):
-            for j in range(0, min(win_y, self.rows * 64), 64):
+        for i in range(0, map_x, 64):
+            for j in range(0, map_y, 64):
+                try:
+                    letter = self.map[j // 64][i // 64]
+                    draw_x, draw_y = i - p_x, j - p_y
+                    view.blit(Map.TILE_MAP[letter], (draw_x, draw_y))
+                # this is a blank spot on the map
+                except IndexError:
+                    continue
+
+        """
+        win_x, win_y = view.get_size()
+        rel_x, rel_y = relative_pos
+        rel_x -= win_x // 2
+        rel_y -= win_y // 2
+        # for each tile
+        for i in range(rel_x - win_x // 2, min(rel_x + win_x // 2, self.cols * 64), 64):
+            for j in range(rel_y - win_y // 2, min(rel_y + win_y // 2, self.rows * 64), 64):
                 try:
                     letter = self.map[j // 64][i // 64]
                     view.blit(Map.TILE_MAP[letter], (i, j))
                 # this is a blank spot on the map
                 except IndexError:
                     continue
+        """
 
 
 class InvalidMapFile(Exception):

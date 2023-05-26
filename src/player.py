@@ -4,10 +4,11 @@ from asset_manager import AssetManager
 
 
 class Player(Entity):
-    def __init__(self):
+    def __init__(self, win_x, win_y, x, y):
         super().__init__()
 
-        self.position = [64, 64]
+        self.position = [x, y]
+        self.window_pos = [win_x, win_y]
         self.vector = [0, 0]
         self.max_speed = 20
         self.current_speed = [0, 0]
@@ -35,4 +36,4 @@ class Player(Entity):
         self.position = [new_x, new_y]
 
     def draw(self, view: pygame.surface.Surface):
-        view.blit(self.texture, self.position)
+        view.blit(self.texture, self.window_pos)
