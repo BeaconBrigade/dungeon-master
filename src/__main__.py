@@ -1,6 +1,7 @@
 import pygame
 from map import Map
 from player import Player
+from enemy import Enemy
 
 WIDTH = 800
 HEIGHT = 800
@@ -9,13 +10,15 @@ HEIGHT = 800
 def main():
     pygame.init()
 
-    screen = pygame.display.set_mode(size=[WIDTH, HEIGHT], flags=pygame.RESIZABLE)
+    screen = pygame.display.set_mode(size=[WIDTH, HEIGHT],
+                                     flags=pygame.RESIZABLE)
     clock = pygame.time.Clock()
     pygame.display.set_caption('Dungeon Master')
 
     level_map = Map('level_one.txt')
     player = Player()
-    entity_list = [player]
+    enemy = Enemy()
+    entity_list = [player, enemy]
 
     running = True
     while running:
@@ -35,9 +38,11 @@ def main():
             player.vector[1] = -1
         if keys[pygame.K_DOWN] or keys[pygame.K_s]:
             player.vector[1] = 1
-        if not keys[pygame.K_LEFT] and not keys[pygame.K_a] and not keys[pygame.K_RIGHT] and not keys[pygame.K_d]:
+        if not keys[pygame.K_LEFT] and not keys[pygame.K_a] and not keys[
+                pygame.K_RIGHT] and not keys[pygame.K_d]:
             player.vector[0] = 0
-        if not keys[pygame.K_UP] and not keys[pygame.K_w] and not keys[pygame.K_DOWN] and not keys[pygame.K_s]:
+        if not keys[pygame.K_UP] and not keys[pygame.K_w] and not keys[
+                pygame.K_DOWN] and not keys[pygame.K_s]:
             player.vector[1] = 0
 
         # fill background
