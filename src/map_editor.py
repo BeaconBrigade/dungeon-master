@@ -15,10 +15,10 @@ def main():
     screen = pygame.display.set_mode(size=[WIDTH, HEIGHT], flags=pygame.RESIZABLE)
     clock = pygame.time.Clock()
 
-    map_name = sys.argv[1] if len(sys.argv) == 2 else 'level_one.txt'
-    map_path = Path(__file__).parent / '..' / 'assets' / 'maps' / map_name
+    map_name = sys.argv[1] if len(sys.argv) == 2 else "level_one.txt"
+    map_path = Path(__file__).parent / ".." / "assets" / "maps" / map_name
     level_map = Map(map_name)
-    pygame.display.set_caption(f'Map Editor - {map_name}')
+    pygame.display.set_caption(f"Map Editor - {map_name}")
 
     modified_time = os.stat(map_path).st_mtime
 
@@ -29,8 +29,7 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.VIDEORESIZE:
-                screen = pygame.display.set_mode((event.w, event.h),
-                                                 pygame.RESIZABLE)
+                screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
 
         # hot reload map
         tmp_time = os.stat(map_path).st_mtime
@@ -50,5 +49,5 @@ def main():
         clock.tick(30)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

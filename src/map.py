@@ -4,12 +4,12 @@ from asset_manager import AssetManager
 
 class Map:
     TILE_MAP = {
-        's': AssetManager.load_texture('floor.png'),
-        'w': AssetManager.load_texture('wall.png'),
+        "s": AssetManager.load_texture("floor.png"),
+        "w": AssetManager.load_texture("wall.png"),
     }
 
     def __init__(self, map_name: str):
-        """ Create a map with a map file name (located within assets/maps) """
+        """Create a map with a map file name (located within assets/maps)"""
         self.text_source = AssetManager.load_map(map_name)
 
         self.map = []
@@ -34,7 +34,7 @@ class Map:
         self.cols = cols
 
     def draw(self, view: pygame.surface.Surface, relative_pos: (int, int)):
-        """ Draws the map to `view` and draws the """
+        """Draws the map to `view` and draws the"""
         win_x, win_y = view.get_size()
         # for each tile
         for i in range(0, min(win_x, self.cols * 64), 64):
