@@ -4,7 +4,7 @@ from pathlib import Path
 
 class AssetManager:
     ASSET_PATH = Path(__file__).parent / ".." / "assets"
-    cache: dict
+    cache = dict()
 
     @staticmethod
     def load_texture(name: str):
