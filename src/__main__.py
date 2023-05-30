@@ -16,11 +16,10 @@ def main():
 
     level_map = Map("level_one.txt")
     win_x, win_y = screen.get_size()
-    map_x, map_y = level_map.dimensions()
     player_x, player_y = 0, 0
     player = Player(win_x // 2, win_y // 2, player_x, player_y)
-    # enemy = Enemy()
-    entity_list = [player]
+    enemy = Enemy()
+    entity_list = [level_map, player, enemy]
 
     running = True
     while running:
@@ -56,12 +55,11 @@ def main():
 
         # fill background
         screen.fill((50, 50, 50))
-        level_map.draw(screen, player.position)
 
         # update entities
         for entity in entity_list:
-            entity.update()
-            entity.draw(screen)
+            entity.update(entity_list)
+            entity.draw(screen, player.position)
 
         pygame.display.flip()
         clock.tick(30)

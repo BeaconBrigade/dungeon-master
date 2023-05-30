@@ -11,12 +11,12 @@ class Enemy(Entity):
         self.max_speed = 20
         self.current_speed = [0, 0]
         self.acceleration = 5
-        self.texture = AssetManager.load_texture("player-v1.png")
+        self.texture = AssetManager.load_texture("enemy.png")
 
-    def draw(self, view: pygame.surface.Surface):
+    def draw(self, view: pygame.surface.Surface, relative_pos: (int, int)):
         view.blit(self.texture, self.position)
 
-    def update(self):
+    def update(self, entity_list: list[Entity]):
         # speed up or slow down depending on vector
         if self.vector[0] != 0:
             self.current_speed[0] = min(
