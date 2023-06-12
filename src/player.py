@@ -3,7 +3,7 @@ import typing
 import pygame
 from entity import Entity
 from asset_manager import AssetManager
-from src.map import Map
+from map import Map
 
 
 class Player(Entity):
@@ -38,9 +38,7 @@ class Player(Entity):
         new_y = self.position[1] + self.vector[1] * self.current_speed[1]
 
         level_map = typing.cast(Map, entity_list[0])
-        print('player\t\t\t', new_x, new_y)
         tile = level_map.tile_at((new_x, new_y))
-        print(tile, '\n')
         # if both x + y is blocked
         if tile is None or tile == 'w':
             # if y only is blocked

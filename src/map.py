@@ -55,12 +55,15 @@ class Map:
 
     def tile_at(self, pixel: (int, int)) -> str | None:
         map_x, map_y = self.dimensions()
-        print('map\t\t\t\t', map_x, map_y)
         x = (pixel[0] + map_x // 2) - 2
         y = pixel[1] + map_y // 2
-        print('adjusted\t\t', x, y)
         try:
-            return self.map[y // 64][x // 64]
+            x2, y2 = int(round(x/64, 0)), int(round(y/64, 0))
+            if x2 != x//64:
+                print(f"  x = {x//64}, x2 = {x2}")
+            if y2 != y//64:
+                print(f"  y = {y//64}, y2 = {y2}")
+            return self.map[y2][x2]
         except IndexError:
             return None
 
